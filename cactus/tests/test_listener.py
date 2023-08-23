@@ -1,7 +1,7 @@
 import os
 import tempfile
 import threading
-import unittest2 as unittest
+import unittest
 
 from cactus.listener import PollingListener
 from cactus.tests.compat import has_symlink

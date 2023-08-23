@@ -1,7 +1,7 @@
 #coding:utf-8
 import shutil
 import tempfile
-import unittest2 as unittest
+import unittest
 
 from cactus.plugin.manager import PluginManager
 from cactus.utils.parallel import PARALLEL_DISABLED

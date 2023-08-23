@@ -1,11 +1,10 @@
 #coding:utf-8
 import os
 import tempfile
-import unittest2 as unittest
 
 from cactus.tests import SiteTestCase
 from cactus.tests.compat import has_symlink
-
+import unittest
 
 class TestBuild(SiteTestCase):
 

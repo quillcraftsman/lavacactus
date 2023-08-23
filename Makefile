@@ -19,7 +19,7 @@ testw:
 	watchmedo shell-command \
 		--patterns="*.py;*.txt" \
 		--recursive \
-		--command='nosetests -x -s --logging-level=CRITICAL --processes=4' \
+		--command='nose2 -x -s --logging-level=CRITICAL --processes=4' \
 		.
 
 alltests:
@@ -27,8 +27,5 @@ alltests:
 	make uninstall
 	make install
 	make test
-
-submit:
-	python setup.py register
 
 .PHONY: test

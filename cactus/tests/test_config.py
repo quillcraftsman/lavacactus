@@ -2,10 +2,11 @@
 import os
 import shutil
 import tempfile
-import unittest2 as unittest
+import unittest
 
 from cactus.config.file import ConfigFile
 from cactus.config.router import ConfigRouter
+
 
 class TestConfigRouter(unittest.TestCase):
     """

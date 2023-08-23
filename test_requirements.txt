@@ -1,5 +1,4 @@
-nose
+nose2
 mock
 tox
-unittest2
 requests

@@ -7,7 +7,8 @@ from distutils.sysconfig import get_python_lib
 from setuptools import setup
 
 
-VERSION = "3.3.3"
+PACKAGE_NAME = 'lava-cactus'
+VERSION = "1.0.0"
 SKELETON_FOLDERS = ['pages', 'plugins', 'static/css', 'static/images', 'static/js', 'templates', 'locale']
 SKELETON_GLOB = ['skeleton/{0}/*'.format(folder) for folder in SKELETON_FOLDERS]
 
@@ -19,11 +20,11 @@ if "uninstall" in sys.argv:
         except subprocess.CalledProcessError:
             pass
 
-    cactusBinPath = run('which cactus')
+    cactusBinPath = run(f'which {PACKAGE_NAME}')
     cactusPackagePath = None
 
     for p in os.listdir(get_python_lib()):
-        if p.lower().startswith('cactus') and p.lower().endswith('.egg'):
+        if p.lower().startswith(PACKAGE_NAME) and p.lower().endswith('.egg'):
             cactusPackagePath = os.path.join(get_python_lib(), p)
 
     if cactusBinPath and os.path.exists(cactusBinPath):
@@ -69,6 +70,7 @@ def fullsplit(path, result=None):
 
 EXCLUDE_FROM_PACKAGES = ['cactus.skeleton',]
 
+
 def is_package(package_name):
     for pkg in EXCLUDE_FROM_PACKAGES:
         if package_name.startswith(pkg):
@@ -104,7 +106,7 @@ for dirpath, dirnames, filenames in os.walk(cactus_dir):
 def find_requirements():
     # Find all requirements.VERSION.txt files that match (e.g. Python 2.6 matches
     # requirements.2.6.txt, requirements.2.txt, and requirments.txt).
-    v = [str(x) for x in  sys.version_info[:2]]
+    v = [str(x) for x in sys.version_info[:2]]
     requirements = []
     while True:
         reqs_file = '.'.join(["requirements"] + v + ["txt"])
@@ -121,13 +123,13 @@ def find_requirements():
     return requirements
 
 setup(
-    name='Cactus',
+    name=PACKAGE_NAME,
     version=VERSION,
     description="Static site generation and deployment.",
     long_description=open('README.md').read(),
-    url='http://github.com/koenbok/Cactus',
-    author='Koen Bok',
-    author_email='koen@madebysofa.com',
+    url='https://github.com/quillcraftsman/lava-cactus',
+    author='quillcraftsman',
+    author_email='quill@craftsman.lol',
     license='BSD',
     packages=packages,
     package_data=package_data,
@@ -137,11 +139,11 @@ setup(
         ],
     },
     install_requires=find_requirements(),
-    extras_require={
-        'GCS Deployment': ['google-api-python-client'],
-        'Cloud Files Deployment': ['pyrax'],
-        'Mac Native FSEvents': ['macfsevents'],
-    },
+    # extras_require={
+    #     # 'GCS Deployment': ['google-api-python-client'],
+    #     # 'Cloud Files Deployment': ['pyrax'],
+    #     # 'Mac Native FSEvents': ['macfsevents'],
+    # },
     tests_require=open(os.path.join(root_dir, "test_requirements.txt")).readlines(),
     zip_safe=False,
     classifiers=[
@@ -150,12 +152,8 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
         "Natural Language :: English",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7",
+        "Operating System :: Linux",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
         "Topic :: Internet :: WWW/HTTP",
     ],
 )

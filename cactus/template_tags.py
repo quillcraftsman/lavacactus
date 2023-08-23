@@ -1,10 +1,9 @@
-#coding:utf-8
 import os
 import logging
 
-from django.template.base import Library
 from django.conf import settings
-from django.utils.encoding import force_text
+from django.template import Library
+from django.utils.encoding import force_str
 from django.utils.safestring import mark_safe
 
 logger = logging.getLogger(__name__)
@@ -131,7 +130,7 @@ def markdown(value, arg=''):
         import markdown2
     except ImportError:
         logging.warning("Markdown package not installed.")
-        return force_text(value)
+        return force_str(value)
     else:
         def parse_extra(extra):
             if ':' not in extra:
@@ -149,7 +148,7 @@ def markdown(value, arg=''):
         else:
             safe_mode = False
 
-        return mark_safe(markdown2.markdown(force_text(value), extras=extras, safe_mode=safe_mode))
+        return mark_safe(markdown2.markdown(force_str(value), extras=extras, safe_mode=safe_mode))
 
 register.simple_tag(takes_context=True)(static)
 register.simple_tag(takes_context=True)(url)

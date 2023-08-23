@@ -1,6 +1,8 @@
 import os
 import io
 import logging
+
+import django
 import yaml
 
 from six.moves import urllib
@@ -8,7 +10,6 @@ from six.moves import urllib
 from django.template import Template, Context
 from cactus.compat.paths import PageCompatibilityLayer
 from cactus.utils.url import ResourceURLHelperMixin
-from cactus.utils.helpers import memoize
 
 
 logger = logging.getLogger(__name__)
@@ -107,6 +108,7 @@ class Page(PageCompatibilityLayer, ResourceURLHelperMixin):
         context, data = self.site.plugin_manager.preBuildPage(
             self.site, self, context, data)
 
+        django.setup()
         return Template(data).render(context)
 
     def build(self):

@@ -1,11 +1,10 @@
-Django>=1.6,<1.7
-django-markwhat>=1.4,<2
+Django
 markdown2
 argparse
 keyring
-boto>=2.4.1
-tornado>=3.2
+boto
+tornado
 colorlog
 colorama
-six>=1.9.0
+six
 PyYAML
