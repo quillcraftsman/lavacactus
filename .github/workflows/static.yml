@@ -33,11 +33,25 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Install lava-cactus package
+        run: |
+          apt install python-distutils
+          python setup.py install
+      - name: Create Project with cactus
+        run: |
+          cactus create site-example
+          cd site-example
+          cactus build
+          cd ..
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
-          path: './myfirstsite/.build'
+          path: './site-example/.build'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

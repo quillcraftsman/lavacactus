@@ -1,7 +1,7 @@
 Internationalization
 ====================
 
-Using internationalization with Cactus
+Using internationalization with LavaCactus
 --------------------------------------
 
 To enable internationalization for your project:
@@ -12,7 +12,7 @@ To enable internationalization for your project:
   4. Edit the .po file that was created with translations.
 
 
-Multiple languages with Cactus
+Multiple languages with LavaCactus
 ------------------------------
 
 To make the best of translations, you'll need multiple configuration files: one per language you'd like to support.

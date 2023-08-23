@@ -8,9 +8,10 @@ uninstall:
 reinstall:
 	make uninstall
 	make install
+	make clean
 
 clean:
-	rm -Rf build Cactus.egg-info dist
+	rm -Rf build lava_cactus.egg-info dist
 
 test:
 	tox
