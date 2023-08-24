@@ -4,10 +4,27 @@
 {% endblock %}
 
 {% block body %}
-<div class="jumbotron">
-  <div class="container">
-    <h1>Make this your about page!</h1>
-    <p>Use this page to tell your visitors about you. Or scrape it, and make a new one!</p>
+
+<div class="p-5 text-center bg-body-tertiary">
+    <div class="container py-5">
+      <h1 class="text-body-emphasis">What is LavaCactus</h1>
+      <p class="col-lg-8 mx-auto lead">
+        LavaCactus is a simple but powerful static website generator using
+          Python and the <a href="https://docs.djangoproject.com/en/dev/topics/templates/" target="_blank">Django template system</a>. LavaCactus also makes it easy to develop
+          locally and deploy your site to S3 directly. It works great for company,
+          portfolio, personal, support websites and blogs.
+      </p>
+        <h2 class="text-body-emphasis">Examples</h2>
+      <p class="col-lg-8 mx-auto lead">
+        <ul class="list-group">
+            <li class="list-group-item"><a href="https://lavacactus.quillcraftsman.lol" target="_blank">lavacactus.quillcraftsman.lol</a></li>
+            <li class="list-group-item"><a href="https://findsimilar.org" target="_blank">findsimilar.org</a></li>
+        </ul>
+      </p>
+        <h2 class="text-body-emphasis">Project Status</h2>
+        <p class="col-lg-8 mx-auto lead">
+            This is Open Source project with BSD-3-Clause license
+        </p>
+    </div>
   </div>
-</div>
 {% endblock %}
