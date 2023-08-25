@@ -167,7 +167,6 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
         "Natural Language :: English",
-        "Operating System :: Linux",
         "Programming Language :: Python :: 3",
         "Topic :: Internet :: WWW/HTTP",
     ],
