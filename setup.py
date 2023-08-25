@@ -9,7 +9,16 @@ from setuptools import setup
 
 PACKAGE_NAME = 'lava-cactus'
 VERSION = "1.0.0"
-SKELETON_FOLDERS = ['pages', 'plugins', 'static/css', 'static/images', 'static/js', 'templates', 'locale']
+SKELETON_FOLDERS = [
+        'pages',
+        'plugins',
+        'static/css',
+        'static/images',
+        'static/js',
+        'templates',
+        'locale',
+        '.github/workflows'
+    ]
 SKELETON_GLOB = ['skeleton/{0}/*'.format(folder) for folder in SKELETON_FOLDERS]
 
 if "uninstall" in sys.argv:
@@ -147,7 +156,6 @@ setup(
     tests_require=open(os.path.join(root_dir, "test_requirements.txt")).readlines(),
     zip_safe=False,
     classifiers=[
-        "Development Status :: 4 - Beta",
         "Environment :: Console",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",

@@ -14,6 +14,7 @@ It works great for company, portfolio, personal, support websites and blogs.
 ## Examples
 
   + https://lavacactus.craftsman.lol - LavaCactus app site and base template example
+  + https://craftsman.lol - quill craftsman about website
   + https://findsimilar.org - FindSimilar open source project website
 
 ## Super quick tutorial for the impatient
