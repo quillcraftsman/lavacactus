@@ -131,11 +131,18 @@ def find_requirements():
 
     return requirements
 
+
+def read(filename):
+    with open(filename, 'r', encoding='utf-8') as file:
+        return file.read()
+
+
 setup(
     name=PACKAGE_NAME,
     version=VERSION,
     description="Static site generation and deployment.",
-    long_description=open('README.md').read(),
+    long_description=read('README.md'),
+    long_description_content_type='text/markdown',
     url='https://github.com/quillcraftsman/lava-cactus',
     author='quillcraftsman',
     author_email='quill@craftsman.lol',
