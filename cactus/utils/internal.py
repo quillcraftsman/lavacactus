@@ -33,7 +33,7 @@ def getargspec(obj):
         raise TypeError("%s is not callable" % type(obj))
     try:
         if inspect.isfunction(obj):
-            return inspect.getargspec(obj)
+            return inspect.signature(obj)
         elif hasattr(obj, FUNC_OBJ_ATTR):
             # For methods or classmethods drop the first
             # argument from the returned list because
@@ -42,7 +42,7 @@ def getargspec(obj):
             # inspect.getargspec() returns for methods.
             # NB: We use im_func so we work with
             #     instancemethod objects also.
-            spec = inspect.getargspec(getattr(obj, FUNC_OBJ_ATTR))
+            spec = inspect.signature(getattr(obj, FUNC_OBJ_ATTR))
             return inspect.ArgSpec(spec.args[:1], spec.varargs, spec.keywords, spec.defaults)
         elif inspect.isclass(obj):
             return getargspec(obj.__init__)
