@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 import os
 import shutil
 
@@ -27,7 +27,7 @@ class TestSite(SiteTestCase):
                 self.site.get_url_for_static('/static/css/style.css')[1:],  # Strip the initial /
                 self.site.get_url_for_static('/static/images/favicon.ico')[1:],  # Strip the initial /
                 self.site.get_url_for_static('/static/js/main.js')[1:],  # Strip the initial /
-        ]))
+            ]))
 
     def testRenderPage(self):
         """
@@ -39,11 +39,10 @@ class TestSite(SiteTestCase):
             os.path.join(self.path, 'pages', 'test.html')
         )
 
-
         self.site.build()
 
-        with open(os.path.join('cactus', 'tests', 'data', 'test-out.html'), "") as expected:
-            with open(os.path.join(self.path, '.build', 'test.html'), "") as obtained:
+        with open(os.path.join('cactus', 'tests', 'data', 'test-out.html'), "rb") as expected:
+            with open(os.path.join(self.path, '.build', 'test.html'), "rb") as obtained:
                 self.assertEqual(expected.read(), obtained.read())
 
     def testPageContext(self):
@@ -58,8 +57,8 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join('cactus', 'tests', 'data', 'koenpage-out.html'), "") as expected:
-            with open(os.path.join(self.path, '.build', 'koenpage.html'), "") as obtained:
+        with open(os.path.join('cactus', 'tests', 'data', 'koenpage-out.html'), "rb") as expected:
+            with open(os.path.join(self.path, '.build', 'koenpage.html'), "rb") as obtained:
                 self.assertEqual(expected.read(), obtained.read())
 
     def test_html_only_context(self):
@@ -73,7 +72,7 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join(self.site.build_path, 'robots.txt'), '') as f:
+        with open(os.path.join(self.site.build_path, 'robots.txt'), 'r') as f:
             self.assertEquals(robots_txt, f.read())
 
     def testStaticLoader(self):
@@ -83,13 +82,12 @@ class TestSite(SiteTestCase):
         static = '/static/css/style.css'
         page = "{%% static '%s' %%}" % static
 
-
         with open(os.path.join(self.path, 'pages', 'staticpage.html'), "w") as dst:
             dst.write(page)
 
         self.site.build()
 
-        with open(os.path.join(self.path, '.build', 'staticpage.html'), "") as obtained:
+        with open(os.path.join(self.path, '.build', 'staticpage.html'), "r") as obtained:
             self.assertEqual(self.site.get_url_for_static(static), obtained.read())
 
     def test_current_page(self):
@@ -109,8 +107,8 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join(self.path, '.build', page), '') as f:
+        with open(os.path.join(self.path, '.build', page), 'r') as f:
             self.assertEqual('True', f.read())
 
-        with open(os.path.join(self.path, '.build', other), '') as f:
+        with open(os.path.join(self.path, '.build', other), 'r') as f:
             self.assertEqual('False', f.read())
