@@ -24,4 +24,5 @@ jobs:
     - name: Run Tests
       run: |
         make reinstall
+        echo Successful install!
         make test
