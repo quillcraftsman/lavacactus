@@ -37,7 +37,7 @@ class TestPrettyURLS(SiteTestCase):
         self.assertFileExists(os.path.join(self.site.build_path, 'test', 'index.html'))
         self.assertFileExists(os.path.join(self.site.build_path, 'folder', 'index.html'))
         self.assertFileExists(os.path.join(self.site.build_path, 'folder', 'page', 'index.html'))
-        self.assertRaises(IOError, open, os.path.join(self.path, '.build', 'test.html'), '')
+        self.assertRaises(IOError, open, os.path.join(self.path, '.build', 'test.html'), 'rU')
 
     def test_ignore_non_html(self):
         """
