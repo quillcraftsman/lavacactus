@@ -143,7 +143,7 @@ setup(
     description="Static site generation and deployment.",
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
-    url='https://github.com/quillcraftsman/lava-cactus',
+    url='https://github.com/quillcraftsman/lavacactus',
     author='quillcraftsman',
     author_email='quill@craftsman.lol',
     license='BSD',
