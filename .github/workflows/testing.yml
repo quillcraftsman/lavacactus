@@ -18,10 +18,13 @@ jobs:
         python-version: '3.x'
     - name: Install Dependencies
       run: |
+        echo Installing dependencies!
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r test_requirements.txt
+        echo All dependencies successfully installed!
     - name: Run Tests
       run: |
-        make reinstall
-        echo Successful install!
+        echo Running tests!
+        make alltests
+        echo All tests were successfully passed!
