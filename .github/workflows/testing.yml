@@ -23,4 +23,5 @@ jobs:
         pip install -r test_requirements.txt
     - name: Run Tests
       run: |
+        make reinstall
         make test
