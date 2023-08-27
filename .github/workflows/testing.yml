@@ -26,5 +26,5 @@ jobs:
     - name: Run Tests
       run: |
         echo Running tests!
-        nose2
+        make alltests
         echo All tests were successfully passed!
