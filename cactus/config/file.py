@@ -30,7 +30,7 @@ class ConfigFile(object):
         self._data = {}
 
         try:
-            self._data = json.load(open(self.path, "rU"))
+            self._data = json.load(open(self.path))
             self._dirty = False
         except IOError:
             logger.warning("Unable to load configuration at '{0}'. No file found.".format(self.path))
