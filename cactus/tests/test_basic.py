@@ -42,8 +42,8 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join('cactus', 'tests', 'data', 'test-out.html'), "rU") as expected:
-            with open(os.path.join(self.path, '.build', 'test.html'), "rU") as obtained:
+        with open(os.path.join('cactus', 'tests', 'data', 'test-out.html'), "") as expected:
+            with open(os.path.join(self.path, '.build', 'test.html'), "") as obtained:
                 self.assertEqual(expected.read(), obtained.read())
 
     def testPageContext(self):
@@ -58,8 +58,8 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join('cactus', 'tests', 'data', 'koenpage-out.html'), "rU") as expected:
-            with open(os.path.join(self.path, '.build', 'koenpage.html'), "rU") as obtained:
+        with open(os.path.join('cactus', 'tests', 'data', 'koenpage-out.html'), "") as expected:
+            with open(os.path.join(self.path, '.build', 'koenpage.html'), "") as obtained:
                 self.assertEqual(expected.read(), obtained.read())
 
     def test_html_only_context(self):
@@ -73,7 +73,7 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join(self.site.build_path, 'robots.txt'), 'rU') as f:
+        with open(os.path.join(self.site.build_path, 'robots.txt'), '') as f:
             self.assertEquals(robots_txt, f.read())
 
     def testStaticLoader(self):
@@ -89,7 +89,7 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join(self.path, '.build', 'staticpage.html'), "rU") as obtained:
+        with open(os.path.join(self.path, '.build', 'staticpage.html'), "") as obtained:
             self.assertEqual(self.site.get_url_for_static(static), obtained.read())
 
     def test_current_page(self):
@@ -109,8 +109,8 @@ class TestSite(SiteTestCase):
 
         self.site.build()
 
-        with open(os.path.join(self.path, '.build', page), 'rU') as f:
+        with open(os.path.join(self.path, '.build', page), '') as f:
             self.assertEqual('True', f.read())
 
-        with open(os.path.join(self.path, '.build', other), 'rU') as f:
+        with open(os.path.join(self.path, '.build', other), '') as f:
             self.assertEqual('False', f.read())
