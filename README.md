@@ -2,7 +2,7 @@
 
 ## What is LavaCactus
 
-LavaCactus is the Fork of [Cactus][cactus_github_page] ported to use with python 3.10 and django 4.0.
+LavaCactus is the static site generator (SSG) based on [Cactus][cactus_github_page] ported to use with python 3.10 and django 4.0.
 The original library work with Python 2.6, 2.7, 3.4 and 3.5 and django<2.0
 
 ## What is Cactus
@@ -20,7 +20,7 @@ It works great for company, portfolio, personal, support websites and blogs.
 
   + https://lavacactus.craftsman.lol - LavaCactus app site and base template example
   + https://craftsman.lol - quill craftsman about website
-  + https://findsimilar.org - FindSimilar open source project website
+  + https://findsimilar.org - FindSimilar open source project website (multi-language example)
 
 ## Super quick tutorial for the impatient
 
@@ -271,7 +271,7 @@ Cactus will return with a set of nameservers that you can then enter with your r
 
     cactus domain:list
 
-If your domain is 'naked' (eg. without www), Cactus will add create an extra bucket that redirects the www variant of your domain to your naked domain (so www.cactus.com to cactus.com). All the above is Amazon only for now.
+If your domain is 'naked' (eg. without www), Cactus will add create an extra bucket that redirects the www variant of your domain to your naked domain (so www.lavacactus.com to cactus.com). All the above is Amazon only for now.
 
 
 #### Extra files
