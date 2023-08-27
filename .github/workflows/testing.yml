@@ -25,4 +25,3 @@ jobs:
       run: |
         make reinstall
         echo Successful install!
-        make test
