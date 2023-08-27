@@ -4,7 +4,6 @@ from django.core.management.commands.compilemessages import Command as CompileMe
 
 from cactus.utils.filesystem import chdir
 
-
 DEFAULT_COMMAND_KWARGS = {
     # Command Options
     "verbosity": 3,
@@ -12,13 +11,18 @@ DEFAULT_COMMAND_KWARGS = {
     "pythonpath": None,
     "traceback": True,
     "all": False,
+    'force_color': False,
+    'no_color': True,
+    'exclude': [],
+    'add_location': False,
+    'ignore_patterns': [],
+    'fuzzy': False,
 }
 
 DEFAULT_MAKEMESSAGES_KWARGS = {
     # MakeMessages Options: Default
     "domain": "django",
     "extensions": [],
-    "ignore_patterns": [],
     "symlinks": False,
     "use_default_ignore_patterns": True,
     "no_wrap": False,
@@ -42,13 +46,12 @@ def WrappedCommandFactory(wrapped, default_kwargs=None):
             self.site = site
 
         def execute(self):
-            kwargs = {"locale": [self.site.locale]}
+            kwargs = {"locale": self.site.locale}
             kwargs.update(base_kwargs)
 
             cmd = wrapped()
             with chdir(self.site.path):
                 cmd.execute(**kwargs)  # May raise an exception depending on gettext install.
-
 
     return WrappedCommand
 

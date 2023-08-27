@@ -4,6 +4,7 @@ import shutil
 import logging
 import traceback
 import django.conf
+from django.utils import translation
 
 from cactus import ui as ui_module
 from cactus.config.router import ConfigRouter
@@ -58,9 +59,15 @@ class Site(SiteCompatibilityLayer):
         self.prettify_urls = self.config.get('prettify', False)
         self.compress_extensions = self.config.get('compress', ['html', 'css', 'js', 'txt', 'xml'])
         self.fingerprint_extensions = self.config.get('fingerprint', [])
-        self.locale = self.config.get("locale", None)
+        self.use_translate = self.config.get('use_translate', False)
 
-        # Verify our location looks correct
+        self.locale = []
+        self.default_language = self.config.get('default_language', 'en')
+        if self.use_translate:
+            self.locale.append(self.default_language)
+            self.other_languages = self.config.get('other_languages', [])
+            self.locale += self.other_languages
+
         self.path = path
         self.verify_path()
 
@@ -150,36 +157,37 @@ class Site(SiteCompatibilityLayer):
                     'myproject.utils.context_processors.settings_context',
                 ],
                 'builtins': [
-                    # 'django.contrib.staticfiles.templatetags.staticfiles',
-                    # - Importing here instead of the top-level makes it work on Python 3.x (!)
-                    # - loading add_to_builtins from loader implictly loads the loader_tags built-in
-                    # - Injecting our tags using add_to_builtins ensures that Cactus tags don't require an import
                     'cactus.template_tags',
                 ],
             },
         }]
 
+        MIDDLEWARE = [
+            'django.middleware.locale.LocaleMiddleware',
+        ]
+
         settings = {
             "TEMPLATES": TEMPLATES,
-            # "INSTALLED_APPS": ['django_markwhat'],
+            "MIDDLEWARE": MIDDLEWARE,
         }
 
-        if self.locale is not None:
+        if self.use_translate:
+
             settings.update({
                 "USE_I18N": True,
                 "USE_L10N": False,
-                "LANGUAGE_CODE":  self.locale,
                 "LOCALE_PATHS": [self.locale_path],
             })
 
         django.conf.settings.configure(**settings)
+        django.setup()
 
     def verify_path(self):
         """
         Check if this path looks like a Cactus website
         """
         required_subfolders = ['pages', 'static', 'templates', 'plugins']
-        if self.locale is not None:
+        if self.use_translate:
             required_subfolders.append('locale')
 
         for p in required_subfolders:
@@ -209,8 +217,9 @@ class Site(SiteCompatibilityLayer):
         """
         Generate the .po files for the site.
         """
-        if self.locale is None:
-            logger.error("You should set a locale in your configuration file before running this command.")
+        if not self.use_translate:
+            logger.error("You should set use_translate=true in configurations file. "
+                         "You also can set default_language and other_languages to translate")
             return
 
         message_maker = MessageMaker(self)
@@ -220,13 +229,6 @@ class Site(SiteCompatibilityLayer):
         """
         Remove pre-existing compiled language files, and re-compile.
         """
-        #TODO: Make this cleaner
-        mo_path = os.path.join(self.locale_path, self.locale, "LC_MESSAGES", "django.mo")
-        try:
-            os.remove(mo_path)
-        except OSError:
-            # No .mo file yet
-            pass
 
         message_compiler = MessageCompiler(self)
         message_compiler.execute()
@@ -240,12 +242,17 @@ class Site(SiteCompatibilityLayer):
         if os.path.isdir(self.build_path):
             shutil.rmtree(self.build_path)
 
-    def build(self):
-        """
-        Generate fresh site from templates.
-        """
-
+    def build_with_translation(self, locale_item=None):
         logger.debug("*** BUILD %s", self.path)
+
+        language = self.default_language
+        if locale_item is not None:
+            locale_build_path = os.path.join(self.build_path, locale_item)
+            self.build_path = locale_build_path
+            language = locale_item
+
+        django.conf.settings.LANGUAGE_CODE = language
+        translation.activate(language)
 
         self.verify_url()
 
@@ -253,8 +260,8 @@ class Site(SiteCompatibilityLayer):
         self._static = None
         self._static_resources_dict = None
 
-        #TODO: Facility to reset the site, and reload config.
-        #TODO: Currently, we can't build a site instance multiple times
+        # TODO: Facility to reset the site, and reload config.
+        # TODO: Currently, we can't build a site instance multiple times
         self.plugin_manager.reload()  # Reload in case we're running on the server # We're still loading twice!
 
         self.plugin_manager.preBuild(self)
@@ -266,11 +273,6 @@ class Site(SiteCompatibilityLayer):
         # Make sure the build path exists
         if not os.path.exists(self.build_path):
             os.mkdir(self.build_path)
-
-        # Prepare translations
-        if self.locale is not None:
-            self.compile_messages()
-            #TODO: Check the command actually completes (msgfmt might not be on the PATH!)
 
         # Copy the static files
         self.buildStatic()
@@ -289,6 +291,7 @@ class Site(SiteCompatibilityLayer):
 
         # Render the pages to their output files
         mapper = multiMap if self._parallel >= PARALLEL_AGGRESSIVE else map_apply
+        # mapper = map_apply
         mapper(lambda p: p.build(), self.pages())
 
         self.plugin_manager.postBuild(self)
@@ -296,6 +299,21 @@ class Site(SiteCompatibilityLayer):
         for static in self.static():
             if os.path.isdir(static.pre_dir):
                 shutil.rmtree(static.pre_dir)
+
+    def build(self):
+        """
+        Generate fresh site from templates.
+        """
+        self.build_with_translation()
+
+        # Prepare translations
+        if self.use_translate:
+            build_path_tmp = self.build_path
+            self.compile_messages()
+
+            for locale_item in self.locale:
+                self.build_with_translation(locale_item)
+                self.build_path = build_path_tmp
 
     def static(self):
         """

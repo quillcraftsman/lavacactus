@@ -2,7 +2,6 @@ import os
 import io
 import logging
 
-import django
 import yaml
 
 from six.moves import urllib
@@ -107,8 +106,6 @@ class Page(PageCompatibilityLayer, ResourceURLHelperMixin):
 
         context, data = self.site.plugin_manager.preBuildPage(
             self.site, self, context, data)
-
-        django.setup()
         return Template(data).render(context)
 
     def build(self):

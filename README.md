@@ -11,6 +11,11 @@ Cactus is a simple but powerful static website generator using Python and the [D
 Cactus also makes it easy to develop locally and deploy your site to S3 directly.
 It works great for company, portfolio, personal, support websites and blogs.
 
+## What is new in LavaCactus
+
+* LavaCactus work with python 3.10 and django 4.0
+* LavaCactus can make structure for multilanguage sites
+
 ## Examples
 
   + https://lavacactus.craftsman.lol - LavaCactus app site and base template example
@@ -25,13 +30,18 @@ Install LavaCactus from pypi
 
 If you saw no errors, you can now generate a new project
 
-    cactus create www.mysite.com
+    cactus create my-new-project
 
-Where www.mysite.com is the project directory
+Where `my-new-project` is the project directory
+
+    cd my-new-project
+
+After that you can change your site with django templates. After that just `build` to create static pages
+
+    cactus build
 
 To start editing and previewing your site type the following. Then point your browser to localhost:8000 and start editing. Cactus will automatically rebuild your project and refresh your browser on changes.
 
-    cd www.mysite.com
     cactus serve
 
 If you use serve your site will be work on test server and you can use /index.html - links starts with /.
@@ -115,6 +125,22 @@ capabilities like inheritance. In a nutshell: a variable looks like this `{{ nam
 ### Enabling Plugins
 
 To enable a plugin for your site, change the file name from [PLUGIN].disabled.py to [PLUGIN].py.
+
+### Internationalization
+
+#### Using internationalization with LavaCactus
+
+To enable internationalization for your project:
+
+  1. Add a `use_translate` key to your configuration file
+  2. Add `default_language` key to your configuration file with main language. For example `default_language="en"`
+  3. Add `other_languages` key to your configuration file with the list of the other languages. 
+     For example `other_languages=["ua", "ru"]`
+  4. Mark strings for translation in your site (using `{% trans %}`)
+  5. Put `{% load i18n %}` at the top of template with `trans` tags 
+  6. Run `cactus messages:make`
+  7. Edit the .po file that was created with translations.
+  8. Run `cactus build` to create multilanguage site structure
 
 ### Deploying
 
@@ -253,13 +279,6 @@ If your domain is 'naked' (eg. without www), Cactus will add create an extra buc
 Cactus will auto generate a `robots.txt` and `sitemap.xml` file for you based on your pages.
 
 This will help bots to index your pages for Google and Bing for example.
-
-
-Python Versions
----------------
-
-Cactus is tested on Python 2.6, 2.7, 3.4 and 3.5. It probably works on Python
-3.3 as well.
 
   [cactus_github_page]: https://github.com/eudicots/Cactus
   [django_templates]: http://docs.djangoproject.com/en/dev/topics/templates/

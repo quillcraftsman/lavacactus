@@ -8,7 +8,7 @@ from setuptools import setup
 
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 SKELETON_FOLDERS = [
         'pages',
         'plugins',
@@ -155,11 +155,6 @@ setup(
         ],
     },
     install_requires=find_requirements(),
-    # extras_require={
-    #     # 'GCS Deployment': ['google-api-python-client'],
-    #     # 'Cloud Files Deployment': ['pyrax'],
-    #     # 'Mac Native FSEvents': ['macfsevents'],
-    # },
     tests_require=open(os.path.join(root_dir, "test_requirements.txt")).readlines(),
     zip_safe=False,
     classifiers=[
