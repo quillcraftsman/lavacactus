@@ -33,7 +33,7 @@ def getargspec(obj):
         raise TypeError("%s is not callable" % type(obj))
     try:
         if inspect.isfunction(obj):
-            return inspect.getargspec(obj)
+            return inspect.getfullargspec(obj)
         elif hasattr(obj, FUNC_OBJ_ATTR):
             # For methods or classmethods drop the first
             # argument from the returned list because
