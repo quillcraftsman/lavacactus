@@ -6,28 +6,28 @@ import shutil
 from distutils.sysconfig import get_python_lib
 from setuptools import setup
 
-
 PACKAGE_NAME = 'lava-cactus'
 VERSION = "1.1.0"
 SKELETON_FOLDERS = [
-        'pages',
-        'plugins',
-        'static/css',
-        'static/images',
-        'static/js',
-        'templates',
-        'locale',
-        '.github/workflows'
-    ]
+    'pages',
+    'plugins',
+    'static/css',
+    'static/images',
+    'static/js',
+    'templates',
+    'locale',
+    '.github/workflows'
+]
 SKELETON_GLOB = ['skeleton/{0}/*'.format(folder) for folder in SKELETON_FOLDERS]
 
 if "uninstall" in sys.argv:
 
     def run(command):
         try:
-            return subprocess.check_output(command, shell = True).strip()
+            return subprocess.check_output(command, shell=True).strip()
         except subprocess.CalledProcessError:
             pass
+
 
     cactusBinPath = run(f'which {PACKAGE_NAME}')
     cactusPackagePath = None
@@ -60,6 +60,7 @@ if "install" in sys.argv or "bdist_egg" in sys.argv:
             sys.stderr.write("  sudo rm %s" % p2)
         sys.exit()
 
+
 # From Django
 
 def fullsplit(path, result=None):
@@ -77,7 +78,7 @@ def fullsplit(path, result=None):
     return fullsplit(head, [tail] + result)
 
 
-EXCLUDE_FROM_PACKAGES = ['cactus.skeleton',]
+EXCLUDE_FROM_PACKAGES = ['cactus.skeleton', ]
 
 
 def is_package(package_name):
@@ -85,6 +86,7 @@ def is_package(package_name):
         if package_name.startswith(pkg):
             return False
     return True
+
 
 # Compile the list of packages available, because distutils doesn't have
 # an easy way to do this.
