@@ -3,14 +3,14 @@ import os
 import posixpath #TODO: Windows?
 import logging
 
-from cactus.utils.packaging import pkg_walk_2
+from cactus.utils.packaging import pkg_walk
 
 
 logger = logging.getLogger(__name__)
 
 
 def bootstrap_from_package(path):
-    for dir_, sub_dirs, filenames in pkg_walk_2("cactus", "skeleton"):
+    for dir_, sub_dirs, filenames in pkg_walk("cactus", "skeleton"):
         base_path = os.path.join(path, dir_.split('skeleton', 1)[1].lstrip('/'))
         for sub_dir in sub_dirs:
             dir_path = os.path.join(base_path, sub_dir)
