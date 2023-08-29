@@ -1,5 +1,11 @@
 # LavaCactus
 
+* [What is LavaCactus](https://github.com/quillcraftsman/lavacactus#what-is-lavacactus)
+* [Examples](https://github.com/quillcraftsman/lavacactus#examples)
+* [Super quick tutorial](https://github.com/quillcraftsman/lavacactus#super-quick-tutorial)
+* [Contribute](https://github.com/quillcraftsman/lavacactus#contribute)
+* [Extended guide](https://github.com/quillcraftsman/lavacactus#extended-guide)
+
 ## What is LavaCactus
 
 LavaCactus is the static site generator (SSG) based on [Cactus][cactus_github_page] ported to use with python 3.10 and django 4.0.
@@ -22,7 +28,7 @@ It works great for company, portfolio, personal, support websites and blogs.
   + https://craftsman.lol - quill craftsman about website
   + https://findsimilar.org - FindSimilar open source project website (multi-language example)
 
-## Super quick tutorial for the impatient
+## Super quick tutorial
 
 Install LavaCactus from pypi
 
@@ -52,6 +58,14 @@ In the [Cactus][cactus_github_page] project you can deploy your site on the diff
     cactus deploy
 
 In this version this functional hasn't been tested. 
+
+## Contribute
+
+You're welcome!
+
+To get started:
+* [Developer Guidelines](https://github.com/quillcraftsman/lavacactus/blob/master/DEVELOPER_GUIDELINES.md)
+* [Developer Documentation](https://github.com/quillcraftsman/lavacactus/blob/master/DEVELOPER_DOCUMENTATION.md)
 
 ## Extended guide
 
