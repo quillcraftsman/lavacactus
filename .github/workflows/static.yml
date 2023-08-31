@@ -46,14 +46,15 @@ jobs:
       - name: Create Project with cactus
         run: |
           echo Building project!
+          cd cactus/skeleton
           cactus build
-          cactus build
+          cd ..
           echo Project was successfully built!
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './site-example/.build'
+          path: './.build'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
