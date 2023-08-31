@@ -37,27 +37,20 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.10"
-      - name: Install lava-cactus packages
+      - name: Install lava-cactus package
         run: |
-          echo Installing packages!
-          python -m pip install --upgrade pip
           python setup.py install
-          echo All packages were successfully installed!
       - name: Create Project with cactus
         run: |
-          echo Building project!
-          cd cactus/skeleton
+          cactus create site-example
+          cd site-example
           cactus build
           cd ..
-          echo Project was successfully built!
-      - name: Granting access
-        run: |
-          chmod 777 .build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
-          path: './.build'
+          path: './site-example/.build'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
