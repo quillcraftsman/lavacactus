@@ -41,8 +41,7 @@ jobs:
         run: |
           echo Installing packages!
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          sudo apt-get install gettext
+          python setup.py install
           echo All packages were successfully installed!
       - name: Create Project with cactus
         run: |
