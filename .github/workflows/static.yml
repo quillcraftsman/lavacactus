@@ -52,7 +52,7 @@ jobs:
           echo Project was successfully built!
       - name: Granting access
         run: |
-          chmod 777 .build
+          chmod 777 ./.build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
