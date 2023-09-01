@@ -39,6 +39,7 @@ jobs:
           python-version: "3.10"
       - name: Install lava-cactus package
         run: |
+          pip install cactus
           sudo apt-get install gettext
       # Build twice. Down't know why :) One time translate don't create translate correctly.
       - name: Build Project with cactus
