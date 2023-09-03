@@ -12,8 +12,6 @@ import colorama
 # No cactus imports here! There's no logging in place (or anything really).
 # It's best to wait until we've ran setup_logging before running imports (some import soft errors log).
 
-PATH = os.path.dirname(__file__)
-
 
 class CactusCli(object):
     """
