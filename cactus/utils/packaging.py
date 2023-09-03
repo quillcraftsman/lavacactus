@@ -1,6 +1,7 @@
-from cactus.cli import PATH
 import posixpath
 import os
+
+PATH = os.path.dirname(__file__).rstrip('utils')
 
 
 def pkg_walk(top):

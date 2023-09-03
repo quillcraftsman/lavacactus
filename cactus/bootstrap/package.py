@@ -1,10 +1,8 @@
 # coding:utf-8
-from cactus.cli import PATH
 import os
 import posixpath  # TODO: Windows?
 import logging
-
-from cactus.utils.packaging import pkg_walk
+from cactus.utils.packaging import pkg_walk, PATH
 
 logger = logging.getLogger(__name__)
 

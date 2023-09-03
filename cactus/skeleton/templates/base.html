@@ -24,9 +24,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-       <li class="{% if_current_page '/index.html' 'active' '' %}"><a href="{% url '/index.html' %}">Home</a></li>
-       <li class="{% if_current_page '/about.html' 'active' '' %}"><a href="{% url '/about.html' %}">About</a></li>
-       <li class="{% if_current_page '/contact.html' 'active' '' %}"><a href="{% url '/contact.html' %}">Contact</a></li>
+       <li class="nav-item">
+                <a class="nav-link {% if_current_page 'index.html' 'active' '' %}" {% if_current_page 'aria-current="page"' '' %} href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if_current_page 'about.html' 'active' '' %}" {% if_current_page 'aria-current="page"' '' %} href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if_current_page 'contact.html' 'active' '' %}" {% if_current_page 'aria-current="page"' '' %} href="contact.html">Contact</a>
+            </li>
       </ul>
     </div>
   </div>
