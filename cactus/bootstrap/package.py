@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 def bootstrap_from_package(path):
-    for dir_, sub_dirs, filenames in pkg_walk("cactus", "skeleton"):
+    for dir_, sub_dirs, filenames in pkg_walk("skeleton"):
         base_path = os.path.join(path, dir_.split('skeleton', 1)[1].lstrip('/'))
         for sub_dir in sub_dirs:
             dir_path = os.path.join(base_path, sub_dir)
