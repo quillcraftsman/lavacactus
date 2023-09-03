@@ -1,6 +1,5 @@
 from cactus.cli import PATH
 import posixpath
-import pathlib
 import os
 
 
@@ -11,6 +10,5 @@ def pkg_walk(top):
     # loop through dirs to do the same thing as we did before
     for name in dirs:
         new_path = posixpath.join(top, name)
-
         for out in pkg_walk(new_path):
             yield out
