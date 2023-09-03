@@ -12,11 +12,14 @@ import colorama
 # No cactus imports here! There's no logging in place (or anything really).
 # It's best to wait until we've ran setup_logging before running imports (some import soft errors log).
 
+PATH = os.path.dirname(__file__)
+
 
 class CactusCli(object):
     """
     We wrap all imports into this object to control their order
     """
+
     def __init__(self):
         self.Site = None
         self.bootstrap = None
@@ -98,7 +101,8 @@ def parse_arguments(cli, args):
     parser_serve.add_argument('-p', '--port', default=8000, type=int, help='The port on which to serve the site.')
     parser_serve.add_argument('-b', '--browser', action='store_true', help='Whether to open a browser for the site.')
 
-    parser_make_messages = subparsers.add_parser('messages:make', help='Create translation files for the current project')
+    parser_make_messages = subparsers.add_parser('messages:make',
+                                                 help='Create translation files for the current project')
     parser_make_messages.set_defaults(target=cli.make_messages)
 
     parser_domain_setup = subparsers.add_parser('domain:setup', help='Setup records for a domain with route 53')
@@ -107,8 +111,8 @@ def parse_arguments(cli, args):
     parser_domain_list = subparsers.add_parser('domain:list', help='Setup records for a domain with route 53')
     parser_domain_list.set_defaults(target=cli.domain_list)
 
-
-    config_parsers = [parser_build, parser_deploy, parser_serve, parser_make_messages, parser_domain_setup, parser_domain_list]
+    config_parsers = [parser_build, parser_deploy, parser_serve, parser_make_messages, parser_domain_setup,
+                      parser_domain_list]
     all_parsers = config_parsers + [parser_create]
 
     for subparser in config_parsers:
@@ -130,6 +134,7 @@ def parse_arguments(cli, args):
         ns.config = [os.path.join(ns.path, 'config.json')]
 
     return ns
+
 
 def main(args):
     cli = CactusCli()

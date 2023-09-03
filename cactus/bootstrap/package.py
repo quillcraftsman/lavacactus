@@ -1,10 +1,10 @@
-#coding:utf-8
+# coding:utf-8
+from cactus.cli import PATH
 import os
-import posixpath #TODO: Windows?
+import posixpath  # TODO: Windows?
 import logging
 
 from cactus.utils.packaging import pkg_walk
-
 
 logger = logging.getLogger(__name__)
 
@@ -23,5 +23,5 @@ def bootstrap_from_package(path):
 
             logger.debug("Copying {0} to {1}".format(resource_path, file_path))
             with open(file_path, 'wb') as f_writer:
-                with open(os.path.join("cactus", resource_path), "rb") as f_reader:
+                with open(os.path.join(PATH, resource_path), "rb") as f_reader:
                     f_writer.write(f_reader.read())
