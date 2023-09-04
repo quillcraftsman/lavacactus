@@ -21,10 +21,10 @@ def get_argument_info(spec):
     args = [param.name for param in spec_values]
     varargs = None
     varkw = None
-    defaults = ()
+    defaults = []
     for param in spec_values:
         if param.default != inspect.Parameter.empty:
-            defaults += (param.default,)
+            defaults.append(param.default)
     return ArgumentInfo(args, varargs, varkw, defaults)
 
 # To remove the first parameter 'self' from object's spec
