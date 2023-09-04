@@ -17,11 +17,12 @@ class ArgumentInfo:
 
 # format the spec to required format of ArgumentInfo
 def get_argument_info(spec):
-    args = [param.name for param in spec.parameters.values()]
+    spec_values = spec.parameters.values()
+    args = [param.name for param in spec_values]
     varargs = None
     varkw = None
     defaults = ()
-    for param in spec.parameters.values():
+    for param in spec_values:
         if param.default != inspect.Parameter.empty:
             defaults += (param.default,)
     return ArgumentInfo(args, varargs, varkw, defaults)
