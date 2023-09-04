@@ -18,15 +18,19 @@ class ArgumentInfo:
 # format the spec to required format of ArgumentInfo
 def get_argument_info(spec):
     spec_values = spec.parameters.values()
-    args = [param.name for param in spec_values]
+    args = []
+    defaults = []
+
+    for param in spec_values:
+        args.append(param.name)
+        if param.default != inspect.Parameter.empty:
+            defaults.append(param.default)
+
     varargs = None
     varkw = None
-    defaults = [
-        param.default
-        for param in spec_values
-        if param.default != inspect.Parameter.empty
-    ]
+
     return ArgumentInfo(args, varargs, varkw, defaults)
+
 
 # To remove the first parameter 'self' from object's spec
 def remove_first_parameter(obj):
