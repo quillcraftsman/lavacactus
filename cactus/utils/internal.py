@@ -16,6 +16,16 @@ class ArgumentInfo:
         self.varkw = varkw
         self.defaults = defaults
 
+# format the spec to required format of ArgumentInfo
+def get_argument_info(spec):
+    args = [param.name for param in spec.parameters.values()]
+    varargs = None
+    varkw = None
+    defaults = ()
+    for param in spec.parameters.values():
+        if param.default != inspect.Parameter.empty:
+            defaults += (param.default,)
+    return ArgumentInfo(args, varargs, varkw, defaults)
 
 def getargspec(obj):
     """
