@@ -24,14 +24,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-       <li class="nav-item {% if active_page == 'index' %}active{% endif %}">
-           <a class="nav-link" href="index.html">Home</a>
+       <li class="nav-item">
+           <a class="nav-link {% if_current_page '/index.html' 'active' '' %}" href="index.html">Home</a>
        </li>
-       <li class="nav-item {% if active_page == 'about' %}active{% endif %}">
-           <a class="nav-link" href="about.html">About</a>
+       <li class="nav-item">
+           <a class="nav-link {% if_current_page '/about.html' 'active' '' %}" href="about.html">About</a>
        </li>
-       <li class="nav-item {% if active_page == 'contact' %}active{% endif %}">
-           <a class="nav-link" href="contact.html">Contact</a>
+       <li class="nav-item">
+           <a class="nav-link {% if_current_page '/contact.html' 'active' '' %}" href="contact.html">Contact</a>
        </li>
       </ul>
     </div>
