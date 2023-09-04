@@ -1,4 +1,5 @@
 #coding:utf-8
+import contextlib
 import six
 import inspect
 
@@ -30,8 +31,8 @@ def getargspec(obj):
     functions or methods.
     """
     if not callable(obj):
-        raise TypeError("%s is not callable" % type(obj))
-    try:
+        raise TypeError(f"{type(obj)} is not callable")
+    with contextlib.suppress(NotImplementedError):
         if inspect.isfunction(obj):
             return inspect.getfullargspec(obj)
         elif hasattr(obj, FUNC_OBJ_ATTR):
@@ -51,13 +52,6 @@ def getargspec(obj):
             # so it must have a __call__ method defined.
             # Return the arguments it expects.
             return getargspec(obj.__call__)
-    except NotImplementedError:
-        # If a nested call to our own getargspec()
-        # raises NotImplementedError, re-raise the
-        # exception with the real object type to make
-        # the error message more meaningful (the caller
-        # only knows what they passed us; they shouldn't
-        # care what aspect(s) of that object we actually
-        # examined).
-        pass
-    raise NotImplementedError("do not know how to get argument list for %s" % type(obj))
+    raise NotImplementedError(
+        f"do not know how to get argument list for {type(obj)}"
+    )
