@@ -27,6 +27,26 @@ def get_argument_info(spec):
             defaults += (param.default,)
     return ArgumentInfo(args, varargs, varkw, defaults)
 
+# To remove the first parameter 'self' from object's spec
+def remove_first_parameter(obj):
+    # For methods or classmethods, drop the first
+    # argument from the returned list because
+    # Python supplies that automatically for us.
+    # Note that this differs from what
+    # inspect.getargspec() returns for methods.
+    # NB: We use im_func so we work with
+    #     instancemethod objects also.
+    # Get the original signature
+    original_spec = inspect.signature(getattr(obj, FUNC_OBJ_ATTR))
+    # Get the parameters of the original signature
+    original_parameters = list(original_spec.parameters.values())
+    # Remove the first parameter (assuming it's the first one)
+    new_parameters = original_parameters[1:]
+    # Create a new signature with the updated parameters
+    spec = original_spec.replace(parameters=new_parameters)
+    print(f'@67: {spec}')
+    return get_argument_info(spec)
+
 def getargspec(obj):
     """
     Get the names and default values of a callable's
