@@ -43,7 +43,6 @@ def remove_first_parameter(obj):
     new_parameters = original_parameters[1:]
     # Create a new signature with the updated parameters
     spec = original_spec.replace(parameters=new_parameters)
-    print(f'@67: {spec}')
     return get_argument_info(spec)
 
 def getargspec(obj):
