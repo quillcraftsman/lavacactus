@@ -5,7 +5,6 @@ import inspect
 
 # Adapted from: http://kbyanc.blogspot.com/2007/07/python-more-generic-getargspec.html
 
-
 FUNC_OBJ_ATTR = "__func__" if six.PY3 else "im_func"
 
 # The alternate for inspect.ArgSpec which was deprecated
@@ -70,26 +69,21 @@ def getargspec(obj):
     """
     if not callable(obj):
         raise TypeError(f"{type(obj)} is not callable")
+
     with contextlib.suppress(NotImplementedError):
         if inspect.isfunction(obj):
-            return inspect.getfullargspec(obj)
+            spec = inspect.signature(obj)
+            return get_argument_info(spec)
+
         elif hasattr(obj, FUNC_OBJ_ATTR):
-            # For methods or classmethods drop the first
-            # argument from the returned list because
-            # python supplies that automatically for us.
-            # Note that this differs from what
-            # inspect.getargspec() returns for methods.
-            # NB: We use im_func so we work with
-            #     instancemethod objects also.
-            spec = inspect.getargspec(getattr(obj, FUNC_OBJ_ATTR))
-            return inspect.ArgSpec(spec.args[:1], spec.varargs, spec.keywords, spec.defaults)
+            return remove_first_parameter(obj)
         elif inspect.isclass(obj):
             return getargspec(obj.__init__)
+
         elif isinstance(obj, object):
             # We already know the instance is callable,
             # so it must have a __call__ method defined.
             # Return the arguments it expects.
             return getargspec(obj.__call__)
-    raise NotImplementedError(
-        f"do not know how to get argument list for {type(obj)}"
-    )
+
+    raise NotImplementedError(f"do not know how to get argument list for {type(obj)}")
