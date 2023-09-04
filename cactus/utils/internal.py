@@ -8,6 +8,14 @@ import inspect
 
 FUNC_OBJ_ATTR = "__func__" if six.PY3 else "im_func"
 
+# The alternate for inspect.ArgSpec which was deprecated
+class ArgumentInfo:
+    def __init__(self, args, varargs, varkw, defaults):
+        self.args = args
+        self.varargs = varargs
+        self.varkw = varkw
+        self.defaults = defaults
+
 
 def getargspec(obj):
     """
