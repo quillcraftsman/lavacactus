@@ -1,12 +1,55 @@
 #coding:utf-8
+import contextlib
 import six
 import inspect
 
 # Adapted from: http://kbyanc.blogspot.com/2007/07/python-more-generic-getargspec.html
 
-
 FUNC_OBJ_ATTR = "__func__" if six.PY3 else "im_func"
 
+# The alternate for inspect.ArgSpec which was deprecated
+class ArgumentInfo:
+    def __init__(self, args, varargs, varkw, defaults):
+        self.args = args
+        self.varargs = varargs
+        self.varkw = varkw
+        self.defaults = defaults
+
+# format the spec to required format of ArgumentInfo
+def get_argument_info(spec):
+    spec_values = spec.parameters.values()
+    args = []
+    defaults = []
+
+    for param in spec_values:
+        args.append(param.name)
+        if param.default != inspect.Parameter.empty:
+            defaults.append(param.default)
+
+    varargs = None
+    varkw = None
+
+    return ArgumentInfo(args, varargs, varkw, defaults)
+
+
+# To remove the first parameter 'self' from object's spec
+def remove_first_parameter(obj):
+    # For methods or classmethods, drop the first
+    # argument from the returned list because
+    # Python supplies that automatically for us.
+    # Note that this differs from what
+    # inspect.getargspec() returns for methods.
+    # NB: We use im_func so we work with
+    #     instancemethod objects also.
+    # Get the original signature
+    original_spec = inspect.signature(getattr(obj, FUNC_OBJ_ATTR))
+    # Get the parameters of the original signature
+    original_parameters = list(original_spec.parameters.values())
+    # Remove the first parameter (assuming it's the first one)
+    new_parameters = original_parameters[1:]
+    # Create a new signature with the updated parameters
+    spec = original_spec.replace(parameters=new_parameters)
+    return get_argument_info(spec)
 
 def getargspec(obj):
     """
@@ -30,34 +73,22 @@ def getargspec(obj):
     functions or methods.
     """
     if not callable(obj):
-        raise TypeError("%s is not callable" % type(obj))
-    try:
+        raise TypeError(f"{type(obj)} is not callable")
+
+    with contextlib.suppress(NotImplementedError):
         if inspect.isfunction(obj):
-            return inspect.getfullargspec(obj)
+            spec = inspect.signature(obj)
+            return get_argument_info(spec)
+
         elif hasattr(obj, FUNC_OBJ_ATTR):
-            # For methods or classmethods drop the first
-            # argument from the returned list because
-            # python supplies that automatically for us.
-            # Note that this differs from what
-            # inspect.getargspec() returns for methods.
-            # NB: We use im_func so we work with
-            #     instancemethod objects also.
-            spec = inspect.getargspec(getattr(obj, FUNC_OBJ_ATTR))
-            return inspect.ArgSpec(spec.args[:1], spec.varargs, spec.keywords, spec.defaults)
+            return remove_first_parameter(obj)
         elif inspect.isclass(obj):
             return getargspec(obj.__init__)
+
         elif isinstance(obj, object):
             # We already know the instance is callable,
             # so it must have a __call__ method defined.
             # Return the arguments it expects.
             return getargspec(obj.__call__)
-    except NotImplementedError:
-        # If a nested call to our own getargspec()
-        # raises NotImplementedError, re-raise the
-        # exception with the real object type to make
-        # the error message more meaningful (the caller
-        # only knows what they passed us; they shouldn't
-        # care what aspect(s) of that object we actually
-        # examined).
-        pass
-    raise NotImplementedError("do not know how to get argument list for %s" % type(obj))
+
+    raise NotImplementedError(f"do not know how to get argument list for {type(obj)}")
