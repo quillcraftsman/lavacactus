@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   workflow_run:
     workflows: ["Testing"]
-    branches: ["main"]
+    branches: ["master"]
     types:
       - completed
 
