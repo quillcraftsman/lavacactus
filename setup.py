@@ -7,7 +7,7 @@ from distutils.sysconfig import get_python_lib
 from setuptools import setup
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 SKELETON_FOLDERS = [
     'pages',
     'plugins',
@@ -99,7 +99,7 @@ cactus_dir = 'cactus'
 
 for dirpath, dirnames, filenames in os.walk(cactus_dir):
     # Ignore PEP 3147 cache dirs and those whose names start with '.'
-    dirnames[:] = [d for d in dirnames if not d.startswith('.') and d != '__pycache__']
+    dirnames[:] = [d for d in dirnames if ((not d.startswith('.')) or (d == '.github')) and d != '__pycache__']
     parts = fullsplit(dirpath)
     package_name = '.'.join(parts)
     if '__init__.py' in filenames and is_package(package_name):
