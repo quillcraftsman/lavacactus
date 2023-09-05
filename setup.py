@@ -7,7 +7,7 @@ from distutils.sysconfig import get_python_lib
 from setuptools import setup
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "1.1.2"
+VERSION = "1.2.0"
 SKELETON_FOLDERS = [
     'pages',
     'plugins',
