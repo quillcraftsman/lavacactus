@@ -1,4 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
+# .github/workflows/static.yml
 name: Deploy static content to Pages
 
 on:
