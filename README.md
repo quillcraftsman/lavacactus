@@ -1,3 +1,7 @@
+[![PyPi](https://img.shields.io/pypi/v/lava-cactus)](https://pypi.org/project/lava-cactus/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lava-cactus)](https://pypi.org/project/lava-cactus/)
+[![PyPI - Downloads](https://static.pepy.tech/badge/lava-cactus)](https://www.pepy.tech/projects/lava-cactus)
+
 # LavaCactus
 
 * [What is LavaCactus](https://github.com/quillcraftsman/lavacactus#what-is-lavacactus)

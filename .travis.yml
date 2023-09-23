@@ -1,9 +1,0 @@
-sudo: false
-language: python
-python:
-    - "3.10"
-install:
-    - pip install .
-    - pip install -r test_requirements.txt
-script:
-    - nose2

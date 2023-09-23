@@ -7,7 +7,7 @@ from distutils.sysconfig import get_python_lib
 from setuptools import setup
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "1.3.0"
+VERSION = "1.4.0"
 SKELETON_FOLDERS = [
     'pages',
     'plugins',
@@ -160,11 +160,18 @@ setup(
     tests_require=open(os.path.join(root_dir, "test_requirements.txt")).readlines(),
     zip_safe=False,
     classifiers=[
+        'Development Status :: 4 - Beta',
         "Environment :: Console",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
         "Natural Language :: English",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Topic :: Internet :: WWW/HTTP",
+        'Operating System :: OS Independent',
     ],
 )
