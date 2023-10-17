@@ -1,8 +1,57 @@
-[![PyPi](https://img.shields.io/pypi/v/lava-cactus)](https://pypi.org/project/lava-cactus/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lava-cactus)](https://pypi.org/project/lava-cactus/)
-[![PyPI - Downloads](https://static.pepy.tech/badge/lava-cactus)](https://www.pepy.tech/projects/lava-cactus)
-
 # LavaCactus
+
+<hr>
+
+#### Workflows
+[![Tests](https://github.com/quillcraftsman/lavacactus/actions/workflows/testing.yml/badge.svg?branch=master)](https://github.com/quillcraftsman/lavacactus/actions/workflows/testing.yml)
+
+[//]: # ([![Pylint]&#40;https://github.com/quillcraftsman/lavacactus/actions/workflows/lint.yml/badge.svg?branch=main&#41;]&#40;https://github.com/quillcraftsman/lavacactus/actions/workflows/lint.yml&#41;)
+
+#### Package
+[![Version](https://img.shields.io/pypi/v/lava-cactus.svg)](https://pypi.python.org/pypi/lava-cactus/)
+[![Development Status](https://img.shields.io/pypi/status/lava-cactus.svg)](https://pypi.python.org/pypi/lava-cactus)
+[![Python version](https://img.shields.io/pypi/pyversions/lava-cactus.svg)](https://pypi.python.org/pypi/lava-cactus/)
+[![License](https://img.shields.io/pypi/l/lava-cactus)](https://github.com/quillcraftsman/lava-cactus/blob/main/LICENSE)
+[![Wheel](https://img.shields.io/pypi/wheel/lava-cactus.svg)](https://pypi.python.org/pypi/lava-cactus/)
+
+#### Support
+[![Documentation](https://img.shields.io/badge/docs-0094FF.svg)][documentation_path]
+[![Discussions](https://img.shields.io/badge/discussions-ff0068.svg)](https://github.com/quillcraftsman/lavacactus/discussions/)
+[![Issues](https://img.shields.io/badge/issues-11AE13.svg)](https://github.com/quillcraftsman/lavacactus/issues/)
+
+#### Downloads
+[![Day Downloads](https://img.shields.io/pypi/dd/lava-cactus)](https://pepy.tech/project/lava-cactus)
+[![Week Downloads](https://img.shields.io/pypi/dw/lava-cactus)](https://pepy.tech/project/lava-cactus)
+[![Month Downloads](https://img.shields.io/pypi/dm/lava-cactus)](https://pepy.tech/project/lava-cactus)
+[![All Downloads](https://img.shields.io/pepy/dt/lava-cactus)](https://pepy.tech/project/lava-cactus)
+
+#### Languages
+[![Languages](https://img.shields.io/github/languages/count/quillcraftsman/lavacactus)](https://github.com/quillcraftsman/lavacactus/)
+[![Top Language](https://img.shields.io/github/languages/top/quillcraftsman/lavacactus)](https://github.com/quillcraftsman/lavacactus/)
+
+#### Development
+- [![Release date](https://img.shields.io/github/release-date/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus/releases)
+[![Last Commit](https://img.shields.io/github/last-commit/quillcraftsman/lavacactus/master
+)](https://github.com/quillcraftsman/lavacactus/)
+- [![Issues](https://img.shields.io/github/issues/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus/issues/)
+[![Closed Issues](https://img.shields.io/github/issues-closed/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus/issues/)
+- [![Pull Requests](https://img.shields.io/github/issues-pr/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus/pulls)
+[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed-raw/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus/pulls)
+- [![Discussions](https://img.shields.io/github/discussions/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus/discussions/)
+
+#### Repository Stats
+[![Stars](https://img.shields.io/github/stars/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus)
+[![Contributors](https://img.shields.io/github/contributors/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/django-dry-tests/graphs/lavacactus)
+[![Forks](https://img.shields.io/github/forks/quillcraftsman/lavacactus
+)](https://github.com/quillcraftsman/lavacactus)
 
 * [What is LavaCactus](https://github.com/quillcraftsman/lavacactus#what-is-lavacactus)
 * [Examples](https://github.com/quillcraftsman/lavacactus#examples)
@@ -302,5 +351,6 @@ Cactus will auto generate a `robots.txt` and `sitemap.xml` file for you based on
 
 This will help bots to index your pages for Google and Bing for example.
 
-  [cactus_github_page]: https://github.com/eudicots/Cactus
-  [django_templates]: http://docs.djangoproject.com/en/dev/topics/templates/
+[cactus_github_page]: https://github.com/eudicots/Cactus
+[django_templates]: http://docs.djangoproject.com/en/dev/topics/templates/
+[documentation_path]: https://github.com/quillcraftsman/lavacactus

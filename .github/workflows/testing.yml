@@ -26,5 +26,5 @@ jobs:
       run: |
         echo Running tests!
         make install
-        nose2
+        make coverage
         echo All tests were successfully passed!

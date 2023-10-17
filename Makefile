@@ -14,6 +14,14 @@ clean:
 	rm -Rf build lava_cactus.egg-info dist
 
 test:
+	nose2
+
+coverage:
+	coverage run --source='.' -m nose2
+	coverage html --omit=setup.py
+	coverage report --omit=setup.py --fail-under=78
+
+tox-test:
 	tox
 
 testw:
@@ -29,4 +37,4 @@ alltests:
 	make install
 	make test
 
-.PHONY: test
+.PHONY: test-tox
