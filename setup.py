@@ -7,7 +7,7 @@ from distutils.sysconfig import get_python_lib
 from setuptools import setup
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "1.4.0"
+VERSION = "1.5.0"
 SKELETON_FOLDERS = [
     'pages',
     'plugins',
@@ -138,6 +138,14 @@ def read(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         return file.read()
 
+PROJECT_URLS = {
+    'Documentation': 'https://github.com/quillcraftsman/lavacactus',
+    'Source': 'https://github.com/quillcraftsman/lavacactus',
+    'Tracker': 'https://github.com/quillcraftsman/lavacactus/issues',
+    'Release notes': 'https://github.com/quillcraftsman/lavacactus/releases',
+    'Changelog': 'https://github.com/quillcraftsman/lavacactus/releases',
+    'Download': 'https://pypi.org/project/lava-cactus/',
+}
 
 setup(
     name=PACKAGE_NAME,
@@ -174,4 +182,5 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         'Operating System :: OS Independent',
     ],
+    project_urls= PROJECT_URLS,
 )
