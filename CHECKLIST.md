@@ -38,7 +38,7 @@
 
 [CI and CD](https://github.com/quillcraftsman/open-source-checklist#ci-and-cd)
 - [x] Tests
-- [ ] Test Coverage
+- [x] Test Coverage
 - [ ] Test Coverage 100%
 - [ ] Linters
 - [x] Build
