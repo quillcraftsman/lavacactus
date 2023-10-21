@@ -121,7 +121,7 @@ In this version this functional hasn't been tested.
 You're welcome!
 
 To get started:
-* [Developer Guidelines](https://github.com/quillcraftsman/lavacactus/blob/master/DEVELOPER_GUIDELINES.md)
+* [Developer Guidelines](https://github.com/quillcraftsman/lavacactus/blob/master/CONTRIBUTING.md)
 * [Developer Documentation](https://github.com/quillcraftsman/lavacactus/blob/master/DEVELOPER_DOCUMENTATION.md)
 
 ## Extended guide
