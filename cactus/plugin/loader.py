@@ -1,14 +1,29 @@
 #coding:utf-8
+import importlib
 import os
 import sys
-import imp
 import logging
+import types
+# from imp import load_source
+from importlib.machinery import SourceFileLoader
+from importlib.util import spec_from_file_location, module_from_spec, spec_from_loader
 
 from cactus.plugin import defaults
 from cactus.utils.filesystem import fileList
 
 
 logger = logging.getLogger(__name__)
+
+
+def load_source_new(modname, filename):
+    loader = importlib.machinery.SourceFileLoader(modname, filename)
+    spec = importlib.util.spec_from_file_location(modname, filename, loader=loader)
+    module = importlib.util.module_from_spec(spec)
+    # The module is always executed and not cached in sys.modules.
+    # Uncomment the following line to cache the module.
+    sys.modules[module.__name__] = module
+    loader.exec_module(module)
+    return module
 
 
 class BasePluginsLoader(object):
@@ -100,6 +115,35 @@ class CustomPluginsLoader(BasePluginsLoader):
 
         return True
 
+    def _load_from_source(self, module_name, plugin_path):
+        # # One way
+        # loader = SourceFileLoader(module_name, plugin_path)
+        # module = types.ModuleType(loader.name)
+        # loader.exec_module(module)
+        #
+        # # Second way
+        # loader = importlib.machinery.SourceFileLoader(module_name, plugin_path)
+        # module = loader.load_module()
+        #
+        # # Third way
+        # spec = importlib.util.spec_from_file_location(module_name, plugin_path)
+        # module = importlib.util.module_from_spec(spec)
+        # sys.modules[module_name] = module
+        # spec.loader.exec_module(module)
+
+        # Next way
+        loader = importlib.machinery.SourceFileLoader(module_name, plugin_path)
+        module = types.ModuleType(loader.name)
+        module.__file__ = plugin_path
+        sys.modules[module.__name__] = module
+        loader.exec_module(module)
+
+        # Old way
+        # module = load_source(module_name, plugin_path)
+
+        # Result
+        return module
+
     def _load_plugin_path(self, plugin_path):
         """
         :param plugin_path: A path to load as a plugin.
@@ -108,7 +152,9 @@ class CustomPluginsLoader(BasePluginsLoader):
         module_name = "plugin_{0}".format(os.path.splitext(os.path.basename(plugin_path))[0])
 
         try:
-            return imp.load_source(module_name, plugin_path)
+            # module = self._load_from_source(module_name, plugin_path)
+            module = load_source_new(module_name, plugin_path)
+            return module
         except Exception as e:
             logger.warning('Could not load plugin at path %s: %s' % (plugin_path, e))
             return None
