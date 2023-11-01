@@ -73,7 +73,7 @@ class TestSite(SiteTestCase):
         self.site.build()
 
         with open(os.path.join(self.site.build_path, 'robots.txt'), 'r') as f:
-            self.assertEquals(robots_txt, f.read())
+            self.assertEqual(robots_txt, f.read())
 
     def testStaticLoader(self):
         """

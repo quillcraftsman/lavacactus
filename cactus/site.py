@@ -8,7 +8,6 @@ from django.utils import translation
 
 from cactus import ui as ui_module
 from cactus.config.router import ConfigRouter
-from cactus.deployment import get_deployment_engine_class
 from cactus.i18n.commands import MessageMaker, MessageCompiler
 from cactus.plugin.builtin.cache import CacheDurationPlugin
 from cactus.plugin.builtin.context import ContextPlugin
@@ -33,7 +32,7 @@ from cactus.utils import ipc
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_PROVIDER = "aws"
+DEFAULT_PROVIDER = "rackspace"
 
 
 class Site(SiteCompatibilityLayer):
@@ -91,13 +90,6 @@ class Site(SiteCompatibilityLayer):
         if ExternalManagerClass is None:
             ExternalManagerClass = ExternalManager
         self.external_manager = ExternalManagerClass(self)
-
-        if DeploymentEngineClass is None:
-            hosting_provider = self.config.get("provider", DEFAULT_PROVIDER)
-            DeploymentEngineClass = get_deployment_engine_class(hosting_provider)
-            assert DeploymentEngineClass is not None, \
-                   "Could not load Deployment for Provider: {0}".format(hosting_provider)
-        self.deployment_engine = DeploymentEngineClass(self)
 
         # Load Django settings
         self.setup()
