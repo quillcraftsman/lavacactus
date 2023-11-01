@@ -61,11 +61,11 @@
 
 ## What is LavaCactus
 
-LavaCactus is the static site generator (SSG) based on [Cactus][cactus_github_page] ported to use with **python 3.11 and django 4**
+LavaCactus is the static site generator (SSG) based on [Cactus][cactus_github_page] ported to use with **python 3.12 and django 4**
 
 The original library work with Python 2.6, 2.7, 3.4 and 3.5 and django<2.0
 
-Now it works on **python 3.8-3.11**
+Now it works on **python 3.8-3.12**
 
 ## What is Cactus
 
@@ -75,7 +75,7 @@ It works great for company, portfolio, personal, support websites and blogs.
 
 ## What is new in LavaCactus
 
-* LavaCactus work with python 3.11 (3.8-3.11) and django 4.0 
+* LavaCactus work with python 3.12 (3.8-3.12) and django 4.0 
 * LavaCactus can make structure for multilanguage sites
 * LavaCactus has GitHub action to publish build on GitHub pages
 
@@ -109,12 +109,6 @@ To start editing and previewing your site type the following. Then point your br
 
 If you use serve your site will be work on test server and you can use /index.html - links starts with /.
 The other way it's to use browser and index.html static file. In this way use index.html in links (without / at the beginning).
-
-In the [Cactus][cactus_github_page] project you can deploy your site on the different hosting with command deploy:
-
-    cactus deploy
-
-In this version this functional hasn't been tested. 
 
 ## Contribute
 
@@ -212,16 +206,6 @@ To enable internationalization for your project:
   6. Run `cactus messages:make`
   7. Edit the .po file that was created with translations.
   8. Run `cactus build` to create multilanguage site structure
-
-### Deploying
-
-Cactus can deploy your website directly to S3, all you need are your Amazon credentials and a bucket name. Cactus
-remembers these in a configuration file name config.json to make future deploys painless. The secret key is stored
-securely in the Keychain or similar services on other OSs.
-
-    cactus deploy
-
-After deploying you can visit the website directly. Cactus also makes sure all your text files are compressed and adds caching headers.
 
 ### Extras
 
@@ -330,20 +314,6 @@ Note that if you're going to use this, you should definitely set your "Meta cano
 to not hurt your search rankings:
 
     <link rel="canonical" href="{{ CURRENT_PAGE.absolute_final_url }}" />
-
-
-#### Nameserver configuration
-
-To set up a hosted zone and generate the correct nameserver records for your domain, make sure your bucket is a valid domain name, and run:
-
-    cactus domain:setup
-
-Cactus will return with a set of nameservers that you can then enter with your registrar. To see the list again run:
-
-    cactus domain:list
-
-If your domain is 'naked' (eg. without www), Cactus will add create an extra bucket that redirects the www variant of your domain to your naked domain (so www.lavacactus.com to cactus.com). All the above is Amazon only for now.
-
 
 #### Extra files
 
