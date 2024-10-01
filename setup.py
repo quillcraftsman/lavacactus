@@ -3,8 +3,14 @@ import sys
 import subprocess
 import shutil
 
-from distutils.sysconfig import get_python_lib
+# from distutils.sysconfig import get_python_lib
+from sysconfig import get_path
 from setuptools import setup
+
+def get_python_lib():
+    name = 'purelib'
+    # name = 'platlib'
+    return get_path(name)
 
 PACKAGE_NAME = 'lava-cactus'
 VERSION = "1.6.0"
