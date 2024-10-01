@@ -65,7 +65,7 @@ LavaCactus is the static site generator (SSG) based on [Cactus][cactus_github_pa
 
 The original library work with Python 2.6, 2.7, 3.4 and 3.5 and django<2.0
 
-Now it works on **python 3.8-3.12**
+Now it works on **python 3.10-3.12**
 
 ## What is Cactus
 
@@ -75,7 +75,7 @@ It works great for company, portfolio, personal, support websites and blogs.
 
 ## What is new in LavaCactus
 
-* LavaCactus work with python 3.12 (3.8-3.12) and django 4.0 
+* LavaCactus work with python 3.12 (3.10-3.12) and django 4.0 
 * LavaCactus can make structure for multilanguage sites
 * LavaCactus has GitHub action to publish build on GitHub pages
 

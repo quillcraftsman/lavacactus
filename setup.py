@@ -13,7 +13,7 @@ def get_python_lib():
     return get_path(name)
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "1.6.0"
+VERSION = "2.0.0"
 SKELETON_FOLDERS = [
     'pages',
     'plugins',
@@ -181,10 +181,9 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: Internet :: WWW/HTTP",
         'Operating System :: OS Independent',
     ],
