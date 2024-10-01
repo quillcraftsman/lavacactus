@@ -73,6 +73,10 @@ class CactusCli(object):
         site = self.Site(path, config)
         site.domain_list()
 
+    def update_config(self, path, config):
+        site = self.Site(path, config)
+        site.update_config(path)
+
 
 def parse_arguments(cli, args):
     """Parse command line arguments"""
@@ -109,8 +113,12 @@ def parse_arguments(cli, args):
     parser_domain_list = subparsers.add_parser('domain:list', help='Setup records for a domain with route 53')
     parser_domain_list.set_defaults(target=cli.domain_list)
 
+    update_config = subparsers.add_parser('update_config', help='Update config file')
+    update_config.add_argument('path', help='key:value')
+    update_config.set_defaults(target=cli.update_config)
+
     config_parsers = [parser_build, parser_deploy, parser_serve, parser_make_messages, parser_domain_setup,
-                      parser_domain_list]
+                      parser_domain_list, update_config]
     all_parsers = config_parsers + [parser_create]
 
     for subparser in config_parsers:
