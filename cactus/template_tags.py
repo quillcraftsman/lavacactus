@@ -11,6 +11,10 @@ logger = logging.getLogger(__name__)
 register = Library()
 
 
+def add_root_url(current_url, root_url):
+    return f'/{root_url}{current_url}'
+
+
 def static(context, link_url):
     """
     Get the path for a static file in the Cactus build.
@@ -36,11 +40,16 @@ def static(context, link_url):
             url_helper_key = site.get_url_for_static(helper_key)
 
             if url_helper_key is not None:
+                if site.root_url is not None:
+                    url_helper_key = add_root_url(url_helper_key, site.root_url)
                 return url_helper_key
 
         logger.warning('%s: static resource does not exist: %s', page.link_url, link_url)
 
         url = link_url
+
+        if site.root_url is not None:
+            url = add_root_url(url, site.root_url)
 
     return url
 
@@ -72,7 +81,10 @@ def url(context, link_url):
         url = u"/%s%s" % (site.config.get("locale"), url)
 
     if site.prettify_urls:
-        return url.rsplit('index.html', 1)[0]
+        url = url.rsplit('index.html', 1)[0]
+
+    if site.root_url is not None:
+        url = add_root_url(url, site.root_url)
 
     return url
 

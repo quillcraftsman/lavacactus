@@ -56,6 +56,7 @@ class Site(SiteCompatibilityLayer):
 
         # Load site-specific config values
         self.prettify_urls = self.config.get('prettify', False)
+        self.root_url = self.config.get('root_url', None)
         self.compress_extensions = self.config.get('compress', ['html', 'css', 'js', 'txt', 'xml'])
         self.fingerprint_extensions = self.config.get('fingerprint', [])
         self.use_translate = self.config.get('use_translate', False)
@@ -536,3 +537,8 @@ class Site(SiteCompatibilityLayer):
 
     def domain_list(self):
         self.deployment_engine.domain_list()
+
+    def update_config(self, path):
+        key, value = path.split(':')
+        self.config.set(key, value)
+        self.config.write()
