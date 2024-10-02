@@ -73,9 +73,9 @@ class CactusCli(object):
         site = self.Site(path, config)
         site.domain_list()
 
-    def update_config(self, path, config):
+    def update_config(self, pair, path, config):
         site = self.Site(path, config)
-        site.update_config(path)
+        site.update_config(pair)
 
 
 def parse_arguments(cli, args):

@@ -13,7 +13,7 @@ def get_python_lib():
     return get_path(name)
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "2.0.0"
+VERSION = "2.0.1"
 SKELETON_FOLDERS = [
     'pages',
     'plugins',
