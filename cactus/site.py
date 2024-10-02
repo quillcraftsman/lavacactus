@@ -538,7 +538,7 @@ class Site(SiteCompatibilityLayer):
     def domain_list(self):
         self.deployment_engine.domain_list()
 
-    def update_config(self, path):
-        key, value = path.split(':')
+    def update_config(self, pair):
+        key, value = pair.split(':')
         self.config.set(key, value)
         self.config.write()

@@ -44,6 +44,7 @@ jobs:
       # Build twice. Down't know why :) One time translate don't create translate correctly.
       - name: Build Project with cactus
         run: |
+          cactus update_config -p root_url:${{ github.event.repository.name }}
           cactus build
           cactus build
       - name: Upload artifact

@@ -114,7 +114,7 @@ def parse_arguments(cli, args):
     parser_domain_list.set_defaults(target=cli.domain_list)
 
     update_config = subparsers.add_parser('update_config', help='Update config file')
-    update_config.add_argument('path', help='key:value')
+    update_config.add_argument('-p', '--pair', type=str, help='key:value')
     update_config.set_defaults(target=cli.update_config)
 
     config_parsers = [parser_build, parser_deploy, parser_serve, parser_make_messages, parser_domain_setup,

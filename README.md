@@ -75,7 +75,7 @@ It works great for company, portfolio, personal, support websites and blogs.
 
 ## What is new in LavaCactus
 
-* LavaCactus work with python 3.12 (3.10-3.12) and django 4.0 
+* LavaCactus work with python 3.12 (3.10-3.12) and Django 5 (>=2.0) 
 * LavaCactus can make structure for multilanguage sites
 * LavaCactus has GitHub action to publish build on GitHub pages
 
