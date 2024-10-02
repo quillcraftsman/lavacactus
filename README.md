@@ -83,7 +83,7 @@ It works great for company, portfolio, personal, support websites and blogs.
 
   + https://lavacactus.craftsman.lol - LavaCactus app site and base template example
   + https://craftsman.lol - quill craftsman about website
-  + https://findsimilar.org - FindSimilar open source project website (multi-language example)
+  + https://libresource.info/ - Libresource GitHub organization website (multi-language example)
 
 ## Super quick tutorial
 
