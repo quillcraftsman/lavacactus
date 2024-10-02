@@ -1,0 +1,30 @@
+name: Test PyPi package
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Delete local package
+      run: |
+        rm -rf ./cactus
+    - name: Install package from PyPi
+      run: |
+        python -m pip install --no-cache-dir --upgrade pip
+        pip install -U --no-cache-dir lava-cactus
+    - name: Install Dev Requirements
+      run: |
+        pip install -r test_requirements.txt
+        make coverage
