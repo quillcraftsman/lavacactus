@@ -1,4 +1,4 @@
-Django==4.2.4
+Django==5.1.1
 markdown2==2.4.10
 keyring==24.2.0
 boto==2.49.0
