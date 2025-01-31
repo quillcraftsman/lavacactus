@@ -13,7 +13,7 @@ def get_python_lib():
     return get_path(name)
 
 PACKAGE_NAME = 'lava-cactus'
-VERSION = "2.0.1"
+VERSION = "3.0.0"
 SKELETON_FOLDERS = [
     'pages',
     'plugins',
@@ -174,7 +174,7 @@ setup(
     tests_require=open(os.path.join(root_dir, "test_requirements.txt")).readlines(),
     zip_safe=False,
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         "Environment :: Console",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",

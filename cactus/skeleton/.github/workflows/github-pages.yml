@@ -30,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
       - name: Set up Python 3.12
         uses: actions/setup-python@v3
         with:
@@ -41,17 +41,17 @@ jobs:
         run: |
           pip install lava-cactus
           sudo apt-get install gettext
-      # Build twice. Down't know why :) One time translate don't create translate correctly.
+      # Build twice. Don't know why :) One time translate don't create translate correctly.
       - name: Build Project with cactus
         run: |
           cactus update_config -p root_url:${{ github.event.repository.name }}
           cactus build
           cactus build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: './.build'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
